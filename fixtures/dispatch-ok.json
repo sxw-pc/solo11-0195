@@ -1,0 +1,16 @@
+[
+  {
+    "id": "D1",
+    "kind": "dispatch",
+    "bottle_id": "CYL-1",
+    "version": 1,
+    "effective_at": "2026-11-24T10:00",
+    "outbound": {
+      "station_signature": "ST1",
+      "customer_signature": "CU1",
+      "customer": "HOSPITAL"
+    },
+    "return": null,
+    "recall_notice": {}
+  }
+]

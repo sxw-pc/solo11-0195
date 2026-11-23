@@ -1,0 +1,16 @@
+[
+  {
+    "id": "B2",
+    "kind": "bottle",
+    "bottle_id": "CYL-1",
+    "version": 2,
+    "effective_at": "2026-11-24T11:00",
+    "volume": 40,
+    "medium": "O2",
+    "certificate": {
+      "inspector": "QA1",
+      "valid_until": "2026-12-31T00:00",
+      "revoked": true
+    }
+  }
+]
