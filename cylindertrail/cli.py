@@ -7,7 +7,8 @@ from . import __file__ as module_file
 
 IMPORTS = {'bottle-import': 'bottle', 'fill-import': 'fill', 'dispatch-import': 'dispatch'}
 DEMO = [('bottle-import', 'bottle-ok.json'), ('fill-import', 'fill-ok.json'),
-        ('dispatch-import', 'dispatch-ok.json'), ('bottle-import', 'bottle-bad.json'),
+        ('dispatch-import', 'dispatch-ok.json'), ('bottle-import', 'bottle-peer.json'),
+        ('fill-import', 'fill-peer-recall.json'), ('bottle-import', 'bottle-bad.json'),
         ('fill-import', 'fill-bad.json'), ('dispatch-import', 'dispatch-bad.json')]
 
 

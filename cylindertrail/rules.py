@@ -20,6 +20,12 @@ def calculate(events):
     bottles = latest(events, 'bottle')
     fills = latest(events, 'fill')
     dispatches = latest(events, 'dispatch')
+    # A recall applies to the shared gas lot, even when the notice arrived in
+    # another bottle's fill evidence. Recall is monotonic until physical return.
+    recall_events=defaultdict(list)
+    for event in events:
+        if event['kind']=='fill' and event['batch'].get('recalled'):
+            recall_events[event['batch']['id']].append(event['id'])
     all_bottles = defaultdict(list)
     for e in events:
         if e['kind'] == 'bottle':
@@ -28,6 +34,7 @@ def calculate(events):
     for bottle_id in sorted(set(bottles) | set(fills) | set(dispatches)):
         bottle, fill, shipment = bottles.get(bottle_id), fills.get(bottle_id), dispatches.get(bottle_id)
         evidence = [e['id'] for e in (bottle, fill, shipment) if e]
+        if fill:evidence += recall_events[fill['batch']['id']]
         history = all_bottles[bottle_id]
         identity = bool(bottle and len({(e['volume'], e['medium']) for e in history}) == 1)
         returned = bool(shipment and shipment.get('return') and shipment['return'].get('station_signature'))
@@ -37,8 +44,9 @@ def calculate(events):
                            and not bottle['certificate'].get('revoked')
                            and bottle['certificate']['inspector'] != fill['operator'] and not contaminated)
         medium = bool(bottle and fill and bottle['medium'] == fill['medium'])
+        recalled = bool(fill and recall_events[fill['batch']['id']])
         purity = bool(fill and fill['batch']['purity'] >= fill['batch']['minimum_purity']
-                      and fill['batch']['expires'] >= fill['filled_at'] and not fill['batch'].get('recalled'))
+                      and fill['batch']['expires'] >= fill['filled_at'] and not recalled)
         # Reference temperature/pressure conversion is deliberately observable in the result.
         equivalent = round(fill['quantity'] * fill['pressure'] / fill['reference_pressure']
                            * fill['reference_temperature'] / fill['temperature'], 3) if fill else 0
@@ -49,7 +57,6 @@ def calculate(events):
         fill_ok = identity and certificate and medium and purity and within_limit and seal
         handed = bool(shipment and shipment['outbound'].get('station_signature')
                       and shipment['outbound'].get('customer_signature'))
-        recalled = bool(fill and fill['batch'].get('recalled'))
         notification = bool(shipment and shipment.get('recall_notice', {}).get('customer_signature'))
         prefix = bottle_id + '/'
         output[prefix+'瓶号冲突是否冻结身份'] = decision('冻结' if not identity else '确认', '历次瓶体容积和介质必须一致', evidence)

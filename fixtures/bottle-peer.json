@@ -1,0 +1,16 @@
+[
+  {
+    "id": "B-PEER",
+    "kind": "bottle",
+    "bottle_id": "CYL-2",
+    "version": 1,
+    "effective_at": "2026-11-24T08:00",
+    "volume": 40,
+    "medium": "O2",
+    "certificate": {
+      "inspector": "QA1",
+      "valid_until": "2026-12-31T00:00",
+      "revoked": false
+    }
+  }
+]

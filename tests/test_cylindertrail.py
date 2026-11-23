@@ -95,6 +95,28 @@ class CylinderTrailTests(unittest.TestCase):
         import_file(self.db, 'dispatch', target)
         self.assertEqual(self.result('出库双签是否转移保管'), '充装站')
 
+    def test_same_batch_recall_reaches_every_dispatched_bottle(self):
+        for kind in ('bottle', 'fill', 'dispatch'):
+            self.load(kind, f'{kind}-ok.json')
+        self.assertEqual(self.result('批次召回是否追踪在外瓶'), '无召回')
+        bottle = json.loads((ROOT / 'fixtures' / 'bottle-ok.json').read_text(encoding='utf-8'))
+        bottle[0].update(id='B-OTHER', bottle_id='CYL-2')
+        target = Path(self.temp.name) / 'other.json'
+        target.write_text(json.dumps(bottle), encoding='utf-8')
+        import_file(self.db, 'bottle', target)
+        fill = json.loads((ROOT / 'fixtures' / 'fill-ok.json').read_text(encoding='utf-8'))
+        fill[0].update(id='F-OTHER', bottle_id='CYL-2', version=2)
+        fill[0]['seal']['bottle_id'] = 'CYL-2'
+        fill[0]['batch']['recalled'] = True
+        target.write_text(json.dumps(fill), encoding='utf-8')
+        import_file(self.db, 'fill', target)
+        self.assertEqual(self.result('批次召回是否追踪在外瓶'), '在外召回')
+        self.assertEqual(self.result('气体批次纯度是否允许充装'), '隔离')
+        self.assertEqual(self.result('召回送达是否解除用气风险'), '风险未结')
+        evidence = report(self.db)['decisions']['CYL-1/批次召回是否追踪在外瓶']['evidence']
+        self.assertIn('F-OTHER', evidence)
+        self.assertTrue(audit(self.db)['ok'])
+
 
 if __name__ == '__main__':
     unittest.main()

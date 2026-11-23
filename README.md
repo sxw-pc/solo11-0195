@@ -10,3 +10,5 @@ python -m unittest discover -s tests -v
 ```
 
 单独入口为 `bottle-import`、`fill-import` 和 `dispatch-import`，传入 `--db`、`--file`。`fixtures` 含每套账正常与异常来源。`report` 展示十项逐瓶决策、证据 ID、实体、来源哈希和历史修订。导入事务保证同哈希重放幂等，冲突事件回滚。
+
+演示中的 `bottle-peer.json` 与 `fill-peer-recall.json` 给同一批次 G1 引入第二只气瓶及迟到召回；召回会沿批次身份重裁所有关联瓶，而不只改变报送召回的瓶。召回原证 ID 同时进入其它关联瓶的裁定证据。

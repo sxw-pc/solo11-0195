@@ -1,0 +1,30 @@
+[
+  {
+    "id": "F-PEER-RECALL",
+    "kind": "fill",
+    "bottle_id": "CYL-2",
+    "version": 2,
+    "effective_at": "2026-11-24T09:00",
+    "filled_at": "2026-11-24T09:00",
+    "operator": "OP1",
+    "medium": "O2",
+    "quantity": 25,
+    "pressure": 100,
+    "reference_pressure": 100,
+    "temperature": 300,
+    "reference_temperature": 300,
+    "receipt_id": "REC1",
+    "batch": {
+      "id": "G1",
+      "purity": 99.9,
+      "minimum_purity": 99.5,
+      "expires": "2026-12-31T00:00",
+      "recalled": true
+    },
+    "seal": {
+      "bottle_id": "CYL-2",
+      "batch_id": "G1",
+      "receipt_id": "REC1"
+    }
+  }
+]
