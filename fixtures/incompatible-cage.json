@@ -1,10 +1,51 @@
 {
-  "cage": {"id":"C1","capacity":2,"bottles":[{"id":"CYL-1","class":"A"}]},
-  "incoming": {"id":"CYL-2","class":"B"},
-  "site_incompatible_pairs": [["A","B"]],
-  "alternate_cage": {"id":"C2","capacity":1,"bottles":[]},
+  "cage": {"id": "C1", "capacity": 2, "bottles": [{"id": "CYL-1", "class": "A"}]},
+  "incoming": {"id": "CYL-2", "class": "B"},
+  "site_incompatible_pairs": [["A", "B"]],
+  "alternate_cage": {"id": "C2", "capacity": 1, "bottles": []},
   "offline_moves": [
-    {"id":"MOVE-A","branch":"A","bottle_id":"CYL-2","target":"C2"},
-    {"id":"MOVE-B","branch":"B","bottle_id":"CYL-3","target":"C2"}
-  ]
+    {"id": "MOVE-A", "branch": "A", "bottle_id": "CYL-2", "target": "C2"},
+    {"id": "MOVE-B", "branch": "B", "bottle_id": "CYL-3", "target": "C2"}
+  ],
+  "capture": {
+    "bottles": [
+      {"id": "CYL-1", "class": "A", "medium": "O2", "seal": "SEAL-CYL1-2026A", "location": "C1"},
+      {"id": "CYL-2", "class": "B", "medium": "N2", "seal": "SEAL-CYL2-2026A", "location": "INTAKE"},
+      {"id": "CYL-3", "class": "B", "medium": "N2", "seal": "SEAL-CYL3-2026A", "location": "INTAKE"}
+    ],
+    "cages": [
+      {"id": "C1", "capacity": 2, "position": "YARD-N1"},
+      {"id": "C2", "capacity": 1, "position": "YARD-N2"}
+    ],
+    "incompatible_pairs": [["A", "B"]],
+    "handlers": [
+      {"id": "HND-1", "may_handle": ["A", "B"]},
+      {"id": "HND-2", "may_handle": ["B"]}
+    ],
+    "scans": [
+      {"id": "SCAN-MOVE-A", "purpose": "move", "bottle_id": "CYL-2", "cage": "C2", "handler": "HND-1", "at": "2026-11-24T09:10"},
+      {"id": "SCAN-MOVE-B", "purpose": "move", "bottle_id": "CYL-3", "cage": "C2", "handler": "HND-2", "at": "2026-11-24T09:20"},
+      {"id": "SCAN-OFF-CYL1", "purpose": "offsite", "bottle_id": "CYL-1", "handler": "HND-1", "at": "2026-11-24T11:30"}
+    ],
+    "outbound": [
+      {
+        "id": "D-CYL1",
+        "bottle_id": "CYL-1",
+        "version": 1,
+        "effective_at": "2026-11-24T11:00",
+        "outbound": {"station_signature": "ST1", "customer_signature": "CU1", "customer": "HOSPITAL"},
+        "return": null,
+        "recall_notice": {}
+      }
+    ],
+    "doors": [
+      {"cage": "C1", "locked": false, "at": "2026-11-24T08:00"},
+      {"cage": "C2", "locked": false, "at": "2026-11-24T08:00"}
+    ],
+    "offline_receipts": [
+      {"id": "MOVE-A", "branch": "A", "bottle_id": "CYL-2", "target": "C2", "scan": "SCAN-MOVE-A", "signed_by": "HND-1"},
+      {"id": "MOVE-B", "branch": "B", "bottle_id": "CYL-3", "target": "C2", "scan": "SCAN-MOVE-B", "signed_by": "HND-2"}
+    ],
+    "freezes": []
+  }
 }
