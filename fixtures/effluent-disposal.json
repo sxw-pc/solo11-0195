@@ -3,7 +3,11 @@
     {"id": "T-NEUTRAL", "source": "equipment-wash", "litres": 1000, "ph": 7, "ph_error": 0.2, "alkalinity_mmol_per_litre": 2},
     {"id": "T-ALKALINE", "source": "hydrotest-wash", "litres": 1000, "ph": 11, "ph_error": 0.2, "alkalinity_mmol_per_litre": 50}
   ],
+  "calibrations": [
+    {"calibration_id": "CAL-N-001", "tank_id": "T-NEUTRAL", "instrument_id": "PH-METER-1", "max_ph_error": 0.2, "calibrated_at": "2026-11-23T08:00", "valid_until": "2026-12-23T08:00", "revoked": false},
+    {"calibration_id": "CAL-A-001", "tank_id": "T-ALKALINE", "instrument_id": "PH-METER-2", "max_ph_error": 0.2, "calibrated_at": "2026-11-23T08:00", "valid_until": "2026-12-23T08:00", "revoked": false}
+  ],
   "outfall": {"minimum_ph": 6, "maximum_ph": 9, "daily_limit_litres": 1500},
   "neutralization_unit": {"capacity_litres": 1000, "acid_stock_mmol": 60000, "available": true},
-  "hazard_carrier": {"capacity_litres": 1000, "authorized": true}
+  "hazard_carrier": {"id": "HC-77", "name": "合规危运七队", "capacity_litres": 1000, "authorized": true, "permit_valid_until": "2027-06-30", "licensed_media": ["hydrotest-wash", "equipment-wash"]}
 }
