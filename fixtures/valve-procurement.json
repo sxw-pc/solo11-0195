@@ -1,0 +1,13 @@
+{
+  "order": {"id": "PO-7", "supplier": "VALVE-CO", "quantity": 10, "unit_price": 100, "minimum_torque_nm": 50, "maximum_torque_nm": 60},
+  "valves": [
+    {"serial": "V1", "torque_nm": 55}, {"serial": "V2", "torque_nm": 55},
+    {"serial": "V3", "torque_nm": 55}, {"serial": "V4", "torque_nm": 55},
+    {"serial": "V5", "torque_nm": 55}, {"serial": "V6", "torque_nm": 55},
+    {"serial": "V7", "torque_nm": 55}, {"serial": "V8", "torque_nm": 55},
+    {"serial": "V9", "torque_nm": 45}, {"serial": "V10", "torque_nm": 46}
+  ],
+  "supplier_invoice": {"id": "INV-7", "amount": 1000, "paid": 0},
+  "replacement": {"lead_days": 2, "authorized": true},
+  "rework": {"available": true, "supplier_credit": 100, "requires_retest": true}
+}
