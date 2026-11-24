@@ -1,0 +1,6 @@
+{
+  "cage": {"id":"C1","capacity":2,"bottles":[{"id":"CYL-1","class":"A"}]},
+  "incoming": {"id":"CYL-2","class":"B"},
+  "site_incompatible_pairs": [["A","B"]],
+  "alternate_cage": {"id":"C2","capacity":1,"bottles":[]}
+}
