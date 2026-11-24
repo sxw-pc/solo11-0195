@@ -1,0 +1,8 @@
+{
+  "bottle_id": "CYL-1",
+  "receipts": [
+    {"receipt_id":"BANK-1","amount":100,"customer":"CLINIC-A","reservation":"H7","source":"bank"},
+    {"receipt_id":"PLATFORM-X","amount":100,"customer":"CLINIC-A","reservation":"H7","source":"platform"}
+  ],
+  "damage_fee": 0
+}
