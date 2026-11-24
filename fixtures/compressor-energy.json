@@ -1,5 +1,6 @@
 {
   "feeder_limit_kw": 70,
+  "horizon": {"start_minute": 540, "end_minute": 660},
   "jobs": [
     {"id": "O2-ICU", "start_options": [540, 600], "duration_minutes": 60, "deadline_minute": 660, "power_kw": 60, "gas_m3": 30},
     {"id": "O2-OR", "start_options": [540, 600], "duration_minutes": 60, "deadline_minute": 660, "power_kw": 40, "gas_m3": 20}
@@ -9,7 +10,8 @@
     {"start_minute": 600, "end_minute": 660, "price_per_kwh": 1}
   ],
   "compressors": [
-    {"id": "CP-1", "max_kw": 60, "cooldown_minutes": 15},
-    {"id": "CP-2", "max_kw": 40, "cooldown_minutes": 15}
-  ]
+    {"id": "CP-1", "max_kw": 60, "min_run_minutes": 15, "cooldown_minutes": 15},
+    {"id": "CP-2", "max_kw": 40, "min_run_minutes": 15, "cooldown_minutes": 15}
+  ],
+  "tank": {"capacity_m3": 60}
 }
