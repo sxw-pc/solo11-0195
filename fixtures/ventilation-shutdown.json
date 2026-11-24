@@ -1,11 +1,12 @@
 {
+  "assembly_point": "M1",
   "readings": [
-    {"id": "S-A", "bay": "A", "gas_ppm": 1100, "alarm_ppm": 1000, "calibration_error_ppm": 100, "at_minute": 540},
-    {"id": "S-B", "bay": "B", "gas_ppm": 100, "alarm_ppm": 1000, "calibration_error_ppm": 100, "at_minute": 540}
+    {"id": "S-A", "bay": "A", "gas_ppm": 1100, "alarm_ppm": 1000, "calibration_error_ppm": 100, "at_minute": 540, "status": "ok"},
+    {"id": "S-B", "bay": "B", "gas_ppm": 100, "alarm_ppm": 1000, "calibration_error_ppm": 100, "at_minute": 540, "status": "ok"}
   ],
   "bays": [
-    {"id": "A", "return_duct": "D1", "staff": ["E1"]},
-    {"id": "B", "return_duct": "D1", "staff": ["E2"]}
+    {"id": "A", "return_duct": "D1", "staff": ["E1"], "sensors": ["S-A"]},
+    {"id": "B", "return_duct": "D1", "staff": ["E2"], "sensors": ["S-B"]}
   ],
   "dampers": [
     {"id": "DA", "bay": "A", "return_duct": "D1", "state": "open"},
