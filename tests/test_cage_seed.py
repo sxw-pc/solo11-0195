@@ -8,3 +8,5 @@ def test_open_slot_hides_site_incompatibility():
     assert free_slots(d['cage']) == 1
     assert accepted(d['cage'], d['incoming']) is True
     assert [d['cage']['bottles'][0]['class'], d['incoming']['class']] in d['site_incompatible_pairs']
+    assert all(accepted(d['alternate_cage'], {'id': m['bottle_id']}) for m in d['offline_moves'])
+    assert len(d['offline_moves']) > d['alternate_cage']['capacity']
