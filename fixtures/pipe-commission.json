@@ -1,0 +1,13 @@
+{
+  "site": {"id": "HOSPITAL-H", "minimum_bar": 3.5, "maximum_bar": 4.5, "partial_handover_allowed": true},
+  "readings": [
+    {"branch": "WARD-A", "outlet_bar": 4.0, "sensor_error_bar": 0.1, "at_minute": 540},
+    {"branch": "WARD-B", "outlet_bar": 5.0, "sensor_error_bar": 0.1, "at_minute": 540}
+  ],
+  "pressure_hold": [
+    {"branch": "WARD-A", "start_bar": 4.0, "end_bar": 3.95, "minutes": 30},
+    {"branch": "WARD-B", "start_bar": 5.0, "end_bar": 4.7, "minutes": 30}
+  ],
+  "replacement_regulator": {"available": true, "install_minutes": 60},
+  "backup_supply": {"branch": "WARD-B", "available": true, "signed_by_hospital": true}
+}
