@@ -1,0 +1,9 @@
+{
+  "tanks": [
+    {"id": "T-NEUTRAL", "source": "equipment-wash", "litres": 1000, "ph": 7, "ph_error": 0.2, "alkalinity_mmol_per_litre": 2},
+    {"id": "T-ALKALINE", "source": "hydrotest-wash", "litres": 1000, "ph": 11, "ph_error": 0.2, "alkalinity_mmol_per_litre": 50}
+  ],
+  "outfall": {"minimum_ph": 6, "maximum_ph": 9, "daily_limit_litres": 1500},
+  "neutralization_unit": {"capacity_litres": 1000, "acid_stock_mmol": 60000, "available": true},
+  "hazard_carrier": {"capacity_litres": 1000, "authorized": true}
+}
