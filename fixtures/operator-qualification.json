@@ -1,0 +1,12 @@
+{
+  "operator": {
+    "id": "OP-7", "site": "FILL-STATION-1", "requested_media": ["O2", "N2"],
+    "sessions": [
+      {"id": "S1", "start": "2026-11-25T00:00:00", "end": "2026-11-26T00:00:00", "credited_hours": 24, "instructor": "I1"},
+      {"id": "S2", "start": "2026-11-25T00:00:00", "end": "2026-11-26T00:00:00", "credited_hours": 24, "instructor": "I2"}
+    ],
+    "practical_exam_passed": false
+  },
+  "reciprocal_credential": {"id": "EXT-7", "operator": "OP-7", "recognized": true, "medium": "O2", "expires": "2027-01-01"},
+  "site_rule": {"minimum_nonoverlap_hours": 40, "practical_exam_required": true}
+}
