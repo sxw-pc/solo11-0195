@@ -1,0 +1,9 @@
+{
+  "bottle_id": "CYL-1",
+  "readings": [
+    {"id":"P1","at":"09:00","pressure":100},
+    {"id":"P2","at":"10:00","pressure":90}
+  ],
+  "possible_temperature_kelvin": [[300,270],[300,300]],
+  "leak_threshold": 5
+}
