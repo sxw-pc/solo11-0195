@@ -78,6 +78,31 @@ def calculate(events):
     return output, states
 
 
+def return_handoff_state(events, bottle_id):
+    """Custody/contamination gate reused by leakage triage.
+
+    Triage joins the existing return-handoff ledger rather than inventing its
+    own custody view: a bottle is releasable only once a signed return receipt
+    puts it back at the station and the receipt carries no contamination flag.
+    """
+    shipments = sorted((e for e in events
+                        if e['kind'] == 'dispatch' and e['bottle_id'] == bottle_id),
+                       key=lambda x: (x['version'], x['effective_at'], x['id']))
+    if not shipments:
+        return {'bottle_id': bottle_id, 'custody': 'unknown',
+                'returned': False, 'contaminated': False, 'evidence': []}
+    shipment = shipments[-1]
+    ret = shipment.get('return') or {}
+    returned = bool(ret.get('station_signature'))
+    contaminated = bool(returned and (ret.get('contaminated')
+                                      or ret.get('residual_pressure', 0)
+                                      > ret.get('max_residual_pressure', float('inf'))))
+    custody = 'station' if returned else 'customer'
+    return {'bottle_id': bottle_id, 'custody': custody, 'returned': returned,
+            'contaminated': contaminated, 'evidence': [shipment['id']],
+            'dispatch_version': shipment['version']}
+
+
 def business_records(e):
     ident = e['id']
     if e['kind'] == 'bottle':

@@ -1,0 +1,176 @@
+{
+  "bundle_id": "route-mismatch",
+  "bottle_id": "CYL-1",
+  "envelopes": [
+    {
+      "sig_version": "HMAC-SHA256",
+      "key_id": "key-clock-c1",
+      "body": {
+        "id": "CLK-1",
+        "type": "clock_anchor",
+        "bottle_id": "CYL-1",
+        "chamber_id": "CH-1",
+        "device_id": "CLOCK-1",
+        "at": "2026-11-24T08:55",
+        "epoch": "EPOCH-2026-11A",
+        "max_offset_seconds": 60,
+        "devices": [
+          "GAUGE-G1",
+          "THERMO-T1",
+          "SCALE-S1",
+          "DETECTOR-D1"
+        ],
+        "anchored_at": "2026-11-24T08:55"
+      },
+      "sig": "49e6ea896b2200b9905a708207a9ed195b7f38fa7740fec75b686a255347ba02"
+    },
+    {
+      "sig_version": "HMAC-SHA256",
+      "key_id": "key-calib-q1",
+      "body": {
+        "id": "CAL-GAUGE-G1",
+        "type": "calibration",
+        "bottle_id": "CYL-1",
+        "chamber_id": "CH-1",
+        "device_id": "LAB-Q1",
+        "at": "2026-11-24T00:00",
+        "gauge_id": "GAUGE-G1",
+        "valid_from": "2026-11-24T00:00",
+        "valid_until": "2026-11-30T00:00",
+        "epoch": "EPOCH-2026-11A",
+        "points": [
+          [
+            90.0,
+            90.0,
+            0.2
+          ],
+          [
+            100.0,
+            100.0,
+            0.2
+          ]
+        ]
+      },
+      "sig": "4835504116fc1f42fa1d54d2fa2da4ba8836653329d95c79d1b81a3f1e093184"
+    },
+    {
+      "sig_version": "HMAC-SHA256",
+      "key_id": "key-gauge-g1",
+      "body": {
+        "id": "P1",
+        "type": "pressure",
+        "bottle_id": "CYL-1",
+        "chamber_id": "CH-1",
+        "device_id": "GAUGE-G1",
+        "at": "2026-11-24T09:00",
+        "value": 100.0,
+        "unit": "bar",
+        "uncertainty": 0.3,
+        "drift": 0.0
+      },
+      "sig": "07da7ee1a1237eb39bb32085f4249ccd9b51693c69904f2de5f88a69a1ef2201"
+    },
+    {
+      "sig_version": "HMAC-SHA256",
+      "key_id": "key-gauge-g1",
+      "body": {
+        "id": "P2",
+        "type": "pressure",
+        "bottle_id": "CYL-1",
+        "chamber_id": "CH-1",
+        "device_id": "GAUGE-G1",
+        "at": "2026-11-24T10:00",
+        "value": 90.0,
+        "unit": "bar",
+        "uncertainty": 0.3,
+        "drift": 0.0
+      },
+      "sig": "c925ff770a2b318dd45d1a061b4d7a6e85338dcead391bd4cbcc05788fd2c560"
+    },
+    {
+      "sig_version": "HMAC-SHA256",
+      "key_id": "key-thermo-t1",
+      "body": {
+        "id": "T1",
+        "type": "temperature",
+        "bottle_id": "CYL-1",
+        "chamber_id": "CH-1",
+        "device_id": "THERMO-T1",
+        "at": "2026-11-24T09:00",
+        "value": 300.0,
+        "unit": "K",
+        "uncertainty": 1.0,
+        "uncertainty_k": 1.0,
+        "epoch": "EPOCH-2026-11A"
+      },
+      "sig": "1b05ec31fbacd5e9b0006e706d7760bbc403b3f059faabb68adaabb7f8e6398d"
+    },
+    {
+      "sig_version": "HMAC-SHA256",
+      "key_id": "key-thermo-t1",
+      "body": {
+        "id": "T2X",
+        "type": "temperature",
+        "bottle_id": "CYL-9",
+        "chamber_id": "CH-9",
+        "device_id": "THERMO-T9",
+        "at": "2026-11-24T10:00",
+        "value": 270.0,
+        "unit": "K",
+        "uncertainty": 1.0,
+        "uncertainty_k": 1.0,
+        "epoch": "EPOCH-2026-11A"
+      },
+      "sig": "d21d37d59a24059f2013d725d2cda31165e462f414ce6dbfb135cba7ba3e2966"
+    },
+    {
+      "sig_version": "HMAC-SHA256",
+      "key_id": "key-scale-s1",
+      "body": {
+        "id": "M1",
+        "type": "mass",
+        "bottle_id": "CYL-1",
+        "chamber_id": "CH-1",
+        "device_id": "SCALE-S1",
+        "at": "2026-11-24T09:00",
+        "value": 42.0,
+        "unit": "kg",
+        "uncertainty": 0.05
+      },
+      "sig": "5f7f24e3623e36e17544f3c282582386ad21452b74c0b5ff57ec4bad82c27abf"
+    },
+    {
+      "sig_version": "HMAC-SHA256",
+      "key_id": "key-scale-s1",
+      "body": {
+        "id": "M2",
+        "type": "mass",
+        "bottle_id": "CYL-1",
+        "chamber_id": "CH-1",
+        "device_id": "SCALE-S1",
+        "at": "2026-11-24T10:00",
+        "value": 42.0,
+        "unit": "kg",
+        "uncertainty": 0.05
+      },
+      "sig": "32d722d4960ed5bbe8723568082a0686c8cab3fc31676a2b7eaea1ad5e466a04"
+    },
+    {
+      "sig_version": "HMAC-SHA256",
+      "key_id": "key-detector-d1",
+      "body": {
+        "id": "D1",
+        "type": "gas_detector",
+        "bottle_id": "CYL-1",
+        "chamber_id": "CH-1",
+        "device_id": "DETECTOR-D1",
+        "at": "2026-11-24T10:00",
+        "zone": "Z-A",
+        "concentration": 0.3,
+        "unit": "ppm",
+        "positive": false
+      },
+      "sig": "47aa1355d9f81dc681c0da9565d1e4e3d6ddda0ead28f21b5620914f154288f4"
+    }
+  ]
+}
