@@ -1,0 +1,15 @@
+{
+  "readings": [
+    {"id": "S-A", "bay": "A", "gas_ppm": 1100, "alarm_ppm": 1000, "calibration_error_ppm": 100, "at_minute": 540},
+    {"id": "S-B", "bay": "B", "gas_ppm": 100, "alarm_ppm": 1000, "calibration_error_ppm": 100, "at_minute": 540}
+  ],
+  "bays": [
+    {"id": "A", "return_duct": "D1", "staff": ["E1"]},
+    {"id": "B", "return_duct": "D1", "staff": ["E2"]}
+  ],
+  "dampers": [
+    {"id": "DA", "bay": "A", "return_duct": "D1", "state": "open"},
+    {"id": "DB", "bay": "B", "return_duct": "D1", "state": "open"}
+  ],
+  "independent_fresh_air": {"bay": "B", "available": true, "flow_m3_per_minute": 400}
+}
