@@ -1,12 +1,198 @@
 {
-  "operator": {
-    "id": "OP-7", "site": "FILL-STATION-1", "requested_media": ["O2", "N2"],
-    "sessions": [
-      {"id": "S1", "start": "2026-11-25T00:00:00", "end": "2026-11-26T00:00:00", "credited_hours": 24, "instructor": "I1"},
-      {"id": "S2", "start": "2026-11-25T00:00:00", "end": "2026-11-26T00:00:00", "credited_hours": 24, "instructor": "I2"}
-    ],
-    "practical_exam_passed": false
+  "schema": "operator-qualification/v2",
+  "site": {
+    "id": "FILL-STATION-1",
+    "name": "工业气瓶充装一站"
   },
-  "reciprocal_credential": {"id": "EXT-7", "operator": "OP-7", "recognized": true, "medium": "O2", "expires": "2027-01-01"},
-  "site_rule": {"minimum_nonoverlap_hours": 40, "practical_exam_required": true}
+  "site_rule": {
+    "minimum_nonoverlap_hours": 40,
+    "practical_exam_required": true,
+    "separate_medium_equipment_items": true,
+    "independent_examiner_required": true,
+    "segment_proof_required": true,
+    "station_inspector_role_separate": true,
+    "media": ["O2", "N2"]
+  },
+  "operator": {
+    "id": "OP-7",
+    "site": "FILL-STATION-1",
+    "requested_media": ["O2", "N2"],
+    "practical_exam_passed": false,
+    "sessions": [
+      {
+        "id": "S1",
+        "start": "2026-11-25T00:00:00",
+        "end": "2026-11-26T00:00:00",
+        "credited_hours": 24,
+        "instructor": "I1",
+        "course": "C-GAS-24",
+        "check_in_at": "2026-11-25T00:00:00",
+        "check_out_at": "2026-11-26T00:00:00",
+        "sign_in_signature": "OP-7@S1-in",
+        "sign_out_signature": "OP-7@S1-out",
+        "recorded_at": "2026-11-26T00:05:00"
+      },
+      {
+        "id": "S2",
+        "start": "2026-11-25T00:00:00",
+        "end": "2026-11-26T00:00:00",
+        "credited_hours": 24,
+        "instructor": "I2",
+        "course": "C-GAS-24",
+        "check_in_at": "2026-11-25T00:00:00",
+        "check_out_at": "2026-11-26T00:00:00",
+        "sign_in_signature": "OP-7@S2-in",
+        "sign_out_signature": "OP-7@S2-out",
+        "recorded_at": "2026-11-26T00:06:00"
+      }
+    ]
+  },
+  "instructors": {
+    "I1": {"id": "I1", "name": "祁讲师", "qualified": true, "certificate": "INS-TRAIN-I1", "media": ["O2", "N2"], "valid_from": "2026-01-01T00:00:00", "valid_to": "2027-12-31T00:00:00"},
+    "I2": {"id": "I2", "name": "闻讲师", "qualified": true, "certificate": "INS-TRAIN-I2", "media": ["O2", "N2"], "valid_from": "2026-01-01T00:00:00", "valid_to": "2027-12-31T00:00:00"},
+    "I3": {"id": "I3", "name": "苌讲师", "qualified": true, "certificate": "INS-TRAIN-I3", "media": ["O2", "N2"], "valid_from": "2026-01-01T00:00:00", "valid_to": "2027-12-31T00:00:00"}
+  },
+  "courses": {
+    "C-GAS-24": {"id": "C-GAS-24", "name": "气体充装安全连续训练", "valid_from": "2026-01-01T00:00:00", "valid_to": "2026-12-31T23:59:00"},
+    "C-GAS-8A": {"id": "C-GAS-8A", "name": "充装设备与介质隔离实操训练 A", "valid_from": "2026-01-01T00:00:00", "valid_to": "2026-12-31T23:59:00"},
+    "C-GAS-8B": {"id": "C-GAS-8B", "name": "充装设备与介质隔离实操训练 B", "valid_from": "2026-01-01T00:00:00", "valid_to": "2026-12-31T23:59:00"}
+  },
+  "examiners": {
+    "EX-1": {"id": "EX-1", "name": "独立考评员 霍岚", "qualified": true, "role": "practical_examiner", "valid_from": "2026-01-01T00:00:00", "valid_to": "2027-12-31T00:00:00"}
+  },
+  "inspectors": {
+    "INS-1": {"id": "INS-1", "name": "本站独立检验员 沈砚", "qualified": true, "role": "independent_inspector", "certificate": "STATION-INSP-INS1", "valid_from": "2026-01-01T00:00:00", "valid_to": "2027-12-31T00:00:00"}
+  },
+  "issuers": {
+    "EXT-AUTH": {"id": "EXT-AUTH", "name": "邻市气体作业互认发证机构", "trusted": true, "standing": "active", "secret": "ext-auth-fixture-secret"}
+  },
+  "identity_verifications": [
+    {"id": "IDV-7", "person": "OP-7", "credential_id": "EXT-7", "verified": true, "method": "证件与人证一致", "at": "2026-01-01T09:00:00"}
+  ],
+  "reciprocal_credential": {
+    "id": "EXT-7",
+    "operator": "OP-7",
+    "recognized": true,
+    "medium": "O2",
+    "expires": "2027-01-01",
+    "issuer": "EXT-AUTH",
+    "valid_from": "2026-01-01",
+    "identity_verified": true,
+    "scope": "oxygen-fill-operator",
+    "signature": "sha256=0deb53a1dbd05e35d149b3bd1b34cb8bca6c22bc1898c649e6c8dd2973e1ed88"
+  },
+  "route_a": {
+    "label": "本站完整授权路线：重叠 24h 只计一次 + 16h 不重叠补课 + O2/N2 分别实操",
+    "training_completed_at": "2026-11-27T16:00:00",
+    "completed_at": "2026-11-27T17:30:00",
+    "additional_sessions": [
+      {
+        "id": "S3",
+        "start": "2026-11-26T13:00:00",
+        "end": "2026-11-26T21:00:00",
+        "credited_hours": 8,
+        "instructor": "I3",
+        "course": "C-GAS-8A",
+        "check_in_at": "2026-11-26T13:00:00",
+        "check_out_at": "2026-11-26T21:00:00",
+        "recorded_at": "2026-11-26T21:05:00"
+      },
+      {
+        "id": "S4",
+        "start": "2026-11-27T08:00:00",
+        "end": "2026-11-27T16:00:00",
+        "credited_hours": 8,
+        "instructor": "I3",
+        "course": "C-GAS-8B",
+        "check_in_at": "2026-11-27T08:00:00",
+        "check_out_at": "2026-11-27T16:00:00",
+        "recorded_at": "2026-11-27T16:05:00"
+      }
+    ],
+    "theory_exam": {
+      "id": "TH-7",
+      "kind": "theory_exam",
+      "operator": "OP-7",
+      "passed": true,
+      "score": 96,
+      "passed_at": "2026-11-27T16:10:00"
+    },
+    "practical_exams": [
+      {
+        "id": "PE-O2-7",
+        "kind": "practical_exam",
+        "operator": "OP-7",
+        "medium": "O2",
+        "passed": true,
+        "passed_at": "2026-11-27T16:30:00",
+        "examiner": "EX-1",
+        "equipment_item": "O2 专用汇流排/禁油器具/氧浓度监测",
+        "examiner_signature": "EX-1@PE-O2-7"
+      },
+      {
+        "id": "PE-N2-7",
+        "kind": "practical_exam",
+        "operator": "OP-7",
+        "medium": "N2",
+        "passed": true,
+        "passed_at": "2026-11-27T17:30:00",
+        "examiner": "EX-1",
+        "equipment_item": "N2 窒息风险/置换与排放/接头规格",
+        "examiner_signature": "EX-1@PE-N2-7"
+      }
+    ]
+  },
+  "inspections": [
+    {
+      "id": "INSP-7001",
+      "kind": "inspection_signed",
+      "bottle_id": "CYL-7001",
+      "inspector": "INS-1",
+      "at": "2026-11-26T09:00:00",
+      "note": "该瓶定检签字，与 OP-7 的充装操作分离"
+    }
+  ],
+  "fills": [
+    {
+      "id": "FILL-7001",
+      "kind": "fill_completed",
+      "receipt_id": "RCP-7001",
+      "bottle_id": "CYL-7001",
+      "operator": "OP-7",
+      "medium": "O2",
+      "filled_at": "2026-11-26T10:00:00",
+      "shift_id": "SHIFT-EARLY-O2",
+      "quantity": 6.5
+    }
+  ],
+  "shifts": [
+    {"id": "SHIFT-EARLY-O2", "operator": "OP-7", "medium": "O2", "start": "2026-11-26T08:00:00", "end": "2026-11-26T12:00:00", "site": "FILL-STATION-1", "status": "completed"},
+    {"id": "SHIFT-N2-1127", "operator": "OP-7", "medium": "N2", "start": "2026-11-27T10:00:00", "end": "2026-11-27T14:00:00", "site": "FILL-STATION-1", "status": "completed", "note": "路线 A 达成前的 N2 排班，实际不得独立操作"},
+    {"id": "SHIFT-O2-1128", "operator": "OP-7", "medium": "O2", "start": "2026-11-28T08:00:00", "end": "2026-11-28T16:00:00", "site": "FILL-STATION-1", "status": "completed"},
+    {"id": "SHIFT-N2-1128", "operator": "OP-7", "medium": "N2", "start": "2026-11-28T08:00:00", "end": "2026-11-28T16:00:00", "site": "FILL-STATION-1", "status": "completed"},
+    {"id": "SHIFT-O2-1202", "operator": "OP-7", "medium": "O2", "start": "2026-12-02T08:00:00", "end": "2026-12-02T16:00:00", "site": "FILL-STATION-1", "status": "scheduled"},
+    {"id": "SHIFT-N2-1203", "operator": "OP-7", "medium": "N2", "start": "2026-12-03T08:00:00", "end": "2026-12-03T16:00:00", "site": "FILL-STATION-1", "status": "scheduled"}
+  ],
+  "revocations": [
+    {"id": "RV-EXAM-N2", "kind": "exam_review", "target": "PE-N2-7", "passed": false, "at": "2026-11-29T10:00:00", "reason": "实操考核复核：N2 设备项签字录像缺失，改判不合格"},
+    {"id": "RV-ISSUER-EXT", "kind": "issuer_invalidation", "issuer": "EXT-AUTH", "target": "EXT-AUTH", "target_type": "issuer", "at": "2026-11-30T09:00:00", "reason": "外部发证机构许可被撤销，互认证书不再可信"}
+  ],
+  "ledger_events": [
+    {"id": "IDV-7", "kind": "identity_verification", "operator": "OP-7", "verified": true, "at": "2026-01-01T09:00:00"},
+    {"id": "S1", "kind": "training_session", "start": "2026-11-25T00:00:00", "end": "2026-11-26T00:00:00", "credited_hours": 24, "instructor": "I1", "course": "C-GAS-24", "check_in_at": "2026-11-25T00:00:00", "check_out_at": "2026-11-26T00:00:00", "recorded_at": "2026-11-26T00:05:00"},
+    {"id": "S2", "kind": "training_session", "start": "2026-11-25T00:00:00", "end": "2026-11-26T00:00:00", "credited_hours": 24, "instructor": "I2", "course": "C-GAS-24", "check_in_at": "2026-11-25T00:00:00", "check_out_at": "2026-11-26T00:00:00", "recorded_at": "2026-11-26T00:06:00"},
+    {"id": "S3", "kind": "training_session", "start": "2026-11-26T13:00:00", "end": "2026-11-26T21:00:00", "credited_hours": 8, "instructor": "I3", "course": "C-GAS-8A", "check_in_at": "2026-11-26T13:00:00", "check_out_at": "2026-11-26T21:00:00", "recorded_at": "2026-11-26T21:05:00"},
+    {"id": "S4", "kind": "training_session", "start": "2026-11-27T08:00:00", "end": "2026-11-27T16:00:00", "credited_hours": 8, "instructor": "I3", "course": "C-GAS-8B", "check_in_at": "2026-11-27T08:00:00", "check_out_at": "2026-11-27T16:00:00", "recorded_at": "2026-11-27T16:05:00"},
+    {"id": "TH-7", "kind": "theory_exam", "operator": "OP-7", "passed": true, "at": "2026-11-27T16:10:00"},
+    {"id": "PE-O2-7", "kind": "practical_exam", "operator": "OP-7", "medium": "O2", "passed": true, "passed_at": "2026-11-27T16:30:00", "examiner": "EX-1"},
+    {"id": "PE-N2-7", "kind": "practical_exam", "operator": "OP-7", "medium": "N2", "passed": true, "passed_at": "2026-11-27T17:30:00", "examiner": "EX-1"},
+    {"id": "EXT-7", "kind": "reciprocal_credential", "operator": "OP-7", "recognized": true, "medium": "O2", "expires": "2027-01-01", "issuer": "EXT-AUTH", "valid_from": "2026-01-01", "identity_verified": true, "scope": "oxygen-fill-operator", "signature": "sha256=0deb53a1dbd05e35d149b3bd1b34cb8bca6c22bc1898c649e6c8dd2973e1ed88"},
+    {"id": "INSP-7001", "kind": "inspection_signed", "bottle_id": "CYL-7001", "inspector": "INS-1", "at": "2026-11-26T09:00:00"},
+    {"id": "FILL-7001", "kind": "fill_completed", "bottle_id": "CYL-7001", "operator": "OP-7", "medium": "O2", "filled_at": "2026-11-26T10:00:00", "shift_id": "SHIFT-EARLY-O2"},
+    {"id": "SHIFT-EARLY-O2", "kind": "shift_scheduled", "operator": "OP-7", "medium": "O2", "start": "2026-11-26T08:00:00", "end": "2026-11-26T12:00:00", "status": "completed"},
+    {"id": "SHIFT-O2-1202", "kind": "shift_scheduled", "operator": "OP-7", "medium": "O2", "start": "2026-12-02T08:00:00", "end": "2026-12-02T16:00:00", "status": "scheduled"},
+    {"id": "SHIFT-N2-1203", "kind": "shift_scheduled", "operator": "OP-7", "medium": "N2", "start": "2026-12-03T08:00:00", "end": "2026-12-03T16:00:00", "status": "scheduled"},
+    {"id": "RV-EXAM-N2", "kind": "exam_review", "target": "PE-N2-7", "passed": false, "at": "2026-11-29T10:00:00"},
+    {"id": "RV-ISSUER-EXT", "kind": "issuer_invalidation", "issuer": "EXT-AUTH", "target": "EXT-AUTH", "target_type": "issuer", "at": "2026-11-30T09:00:00"}
+  ]
 }
