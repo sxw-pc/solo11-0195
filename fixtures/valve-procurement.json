@@ -1,5 +1,14 @@
 {
-  "order": {"id": "PO-7", "supplier": "VALVE-CO", "quantity": 10, "unit_price": 100, "minimum_torque_nm": 50, "maximum_torque_nm": 60},
+  "order": {
+    "id": "PO-7",
+    "supplier": "VALVE-CO",
+    "quantity": 10,
+    "unit_price": 100,
+    "minimum_torque_nm": 50,
+    "maximum_torque_nm": 60,
+    "torque_uncertainty_nm": 2,
+    "received_at": "2026-11-24"
+  },
   "valves": [
     {"serial": "V1", "torque_nm": 55}, {"serial": "V2", "torque_nm": 55},
     {"serial": "V3", "torque_nm": 55}, {"serial": "V4", "torque_nm": 55},
@@ -9,5 +18,43 @@
   ],
   "supplier_invoice": {"id": "INV-7", "amount": 1000, "paid": 0},
   "replacement": {"lead_days": 2, "authorized": true},
-  "rework": {"available": true, "supplier_credit": 100, "requires_retest": true}
+  "rework": {"available": true, "supplier_credit": 100, "requires_retest": true},
+  "scenarios": {
+    "A_replacement": {
+      "label": "Path A: return V9/V10, receive new serials, retest, settle 1000",
+      "events": [
+        {"id": "A-PAY-1", "kind": "payment", "amount": 800, "at": "2026-11-24", "reference": "BANK-A-1"},
+        {"id": "A-RETURN", "kind": "return_to_supplier", "serials": ["V9", "V10"], "at": "2026-11-24"},
+        {"id": "A-REPLACEMENT", "kind": "replacement_arrival", "replaces": ["V9", "V10"],
+         "at": "2026-11-26",
+         "valves": [{"serial": "V11", "torque_nm": 55}, {"serial": "V12", "torque_nm": 57}]},
+        {"id": "A-PAY-2", "kind": "payment", "amount": 200, "at": "2026-11-26", "reference": "BANK-A-2"}
+      ]
+    },
+    "B_rework": {
+      "label": "Path B: signed local rework, retest original serials, 100 credit, settle 900",
+      "events": [
+        {"id": "B-PAY-1", "kind": "payment", "amount": 800, "at": "2026-11-24", "reference": "BANK-B-1"},
+        {"id": "B-AUTH", "kind": "rework_authorization", "serials": ["V9", "V10"],
+         "supplier_signed": true, "at": "2026-11-24"},
+        {"id": "B-REWORK", "kind": "rework", "at": "2026-11-25", "operator": "ST1",
+         "entries": [{"serial": "V9", "hours": 1.5}, {"serial": "V10", "hours": 1.0}]},
+        {"id": "B-RETEST-V9", "kind": "retest", "serial": "V9", "torque_nm": 52,
+         "independent": true, "instrument": "TQ-2", "at": "2026-11-25"},
+        {"id": "B-RETEST-V10", "kind": "retest", "serial": "V10", "torque_nm": 54,
+         "independent": true, "instrument": "TQ-3", "at": "2026-11-25"},
+        {"id": "B-PAY-2", "kind": "payment", "amount": 100, "at": "2026-11-25", "reference": "BANK-B-2"}
+      ]
+    },
+    "late_calibration": {
+      "label": "V1 (already installed) and V2 (still in stores) are disavowed when TQ-1 fails late calibration",
+      "events": [
+        {"id": "L-PAY", "kind": "payment", "amount": 800, "at": "2026-11-24", "reference": "BANK-L-1"},
+        {"id": "L-INSTALL", "kind": "install", "serial": "V1", "at": "2026-11-30"},
+        {"id": "L-CALIBRATION", "kind": "calibration_void", "serials": ["V1", "V2"],
+         "instrument": "TQ-1", "reason": "late calibration invalidates the reading",
+         "at": "2026-12-05"}
+      ]
+    }
+  }
 }
